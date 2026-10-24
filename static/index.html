@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Hub para Links</title>
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/settings.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Hub para Links</h1>
+      <div class="header-actions">
+        <button id="open-settings" class="btn-icon" type="button" popovertarget="settings" aria-label="Aparência" title="Aparência">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+        <button id="open-add" class="btn-add" type="button" aria-label="Adicionar site" title="Adicionar site">+</button>
+      </div>
+    </header>
+
+    <p id="page-error" class="banner-error" role="alert" hidden></p>
+
+    <ul id="list" class="grid" aria-live="polite"></ul>
+
+    <div id="empty" class="empty" hidden>
+      <p class="empty-title">Nenhum site salvo ainda</p>
+      <p class="empty-text">Clique em <strong>+</strong> para adicionar o primeiro.</p>
+    </div>
+  </main>
+
+  <!-- Painel de aparência -->
+  <div id="settings" class="settings" popover aria-labelledby="settings-title">
+    <h2 id="settings-title" class="settings-title">Aparência</h2>
+
+    <fieldset id="theme-options" class="field">
+      <legend>Tema</legend>
+      <div class="segmented">
+        <label><input type="radio" name="theme" value="system"><span>Sistema</span></label>
+        <label><input type="radio" name="theme" value="light"><span>Claro</span></label>
+        <label><input type="radio" name="theme" value="dark"><span>Escuro</span></label>
+      </div>
+      <p id="theme-hint" class="settings-hint" hidden>Com um fundo escolhido, o tema acompanha a cor.</p>
+    </fieldset>
+
+    <fieldset class="field">
+      <legend>Fundo</legend>
+      <div id="bg-swatches" class="swatches">
+        <label class="swatch swatch-custom" title="Cor personalizada">
+          <input id="bg-custom" type="color" class="visually-hidden" aria-label="Cor personalizada">
+        </label>
+      </div>
+    </fieldset>
+
+    <button id="settings-reset" type="button" class="btn-secondary btn-block">Restaurar padrão</button>
+  </div>
+
+  <dialog id="dialog" closedby="any" aria-labelledby="dialog-title">
+    <form id="form" novalidate>
+      <h2 id="dialog-title">Novo site</h2>
+
+      <label for="name">Nome</label>
+      <input id="name" name="name" type="text" maxlength="100" placeholder="Ex.: GitHub" autocomplete="off" required>
+
+      <label for="url">URL</label>
+      <input id="url" name="url" type="url" maxlength="2048" placeholder="https://github.com" autocomplete="off" inputmode="url" required>
+
+      <p id="form-error" class="form-error" role="alert" hidden></p>
+
+      <div class="actions">
+        <button type="button" id="cancel" class="btn-secondary">Cancelar</button>
+        <button type="submit" id="save" class="btn-primary">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

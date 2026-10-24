@@ -1,0 +1,14 @@
+services:
+  links:
+    build: .
+    container_name: links
+    ports:
+      - "5000:5000"
+    # Podman rootless: mapeia seu usuário do host para o UID 1000 do container
+    # (usuário "app"), para que ele consiga gravar em ./data e os arquivos
+    # continuem sendo seus no host.
+    userns_mode: "keep-id:uid=1000,gid=1000"
+    volumes:
+      # :Z ajusta o rótulo SELinux (Fedora/RHEL); é ignorado onde não há SELinux.
+      - ./data:/app/data:Z
+    restart: unless-stopped

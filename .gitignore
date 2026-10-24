@@ -1,0 +1,17 @@
+# Banco de dados (dados pessoais)
+data/*
+!data/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Temporários / editores
+*.log
+*.tmp
+*.swp
+.DS_Store
+.idea/
+.vscode/
