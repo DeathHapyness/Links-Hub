@@ -130,7 +130,7 @@ button { font: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 44px 16px 16px;
+  padding: 16px 76px 16px 16px;
   color: inherit;
   text-decoration: none;
   border-radius: var(--radius);
@@ -147,6 +147,24 @@ button { font: inherit; cursor: pointer; }
   color: var(--muted);
   font-weight: 600;
   text-transform: uppercase;
+  overflow: hidden;
+}
+
+.card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Favicons costumam ser pequenos e transparentes: centraliza sem cortar. */
+.card-icon.is-favicon { padding: 5px; }
+.card-icon.is-favicon img { object-fit: contain; }
+.card-icon.is-emoji {
+  text-transform: none;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+  white-space: nowrap;
 }
 
 .card-text { min-width: 0; }
@@ -161,11 +179,16 @@ button { font: inherit; cursor: pointer; }
 .card-name { font-weight: 550; }
 .card-host { color: var(--muted); font-size: .85rem; }
 
-.card-remove {
+.card-actions {
   position: absolute;
   top: 50%;
   right: 8px;
   translate: 0 -50%;
+  display: flex;
+  gap: 2px;
+}
+
+.card-action {
   width: 30px;
   height: 30px;
   border: 0;
@@ -176,12 +199,55 @@ button { font: inherit; cursor: pointer; }
   opacity: 0;
   transition: opacity .15s, background .15s, color .15s;
 }
-.card:hover .card-remove,
-.card-remove:focus-visible { opacity: 1; }
-.card-remove:hover { background: var(--danger-bg); color: var(--danger); }
+.card:hover .card-action,
+.group-header:hover .card-action,
+.card-action:focus-visible { opacity: 1; }
+.card-action:hover { background: var(--glass-icon); color: var(--text); }
+.card-remove:hover,
+.group-remove:hover { background: var(--danger-bg); color: var(--danger); }
 
 @media (hover: none) {
-  .card-remove { opacity: 1; }
+  .card-action { opacity: 1; }
+}
+
+/* Categorias */
+.group + .group { margin-top: 32px; }
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.group-title {
+  margin: 0;
+  font-size: .85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+.group-count {
+  margin-left: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--glass-icon);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.group-remove { width: 26px; height: 26px; }
+
+.group-empty {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--glass-border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: .9rem;
+  text-align: center;
 }
 
 .empty {
@@ -225,7 +291,8 @@ dialog label {
   font-weight: 500;
 }
 
-dialog input {
+dialog input,
+dialog select {
   width: 100%;
   margin-bottom: 16px;
   padding: 10px 12px;
@@ -235,8 +302,32 @@ dialog input {
   border: 1px solid var(--border);
   border-radius: 10px;
 }
-dialog input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgb(37 99 235 / 0.2); }
+dialog input[hidden] { display: none; }
+dialog input:focus,
+dialog select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgb(37 99 235 / 0.2); }
 dialog input[aria-invalid="true"] { border-color: var(--danger); }
+
+.label-optional { color: var(--muted); font-weight: 400; }
+
+.icon-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.icon-field .card-icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+.icon-field input { flex: 1; }
+
+.field-hint {
+  margin: -10px 0 16px;
+  color: var(--muted);
+  font-size: .8rem;
+}
 
 .form-error {
   margin: -4px 0 16px;
@@ -286,6 +377,7 @@ dialog input[aria-invalid="true"] { border-color: var(--danger); }
 .btn-icon svg { transition: transform .4s ease; }
 .btn-icon:hover { color: var(--text); border-color: var(--accent); }
 .btn-icon:hover svg { transform: rotate(60deg); }
+.btn-icon-static:hover svg { transform: none; }
 
 /* Painel de cores*/
 .settings {

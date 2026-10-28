@@ -20,13 +20,19 @@
             <circle cx="12" cy="12" r="3"/>
           </svg>
         </button>
+        <button id="open-category" class="btn-icon btn-icon-static" type="button" aria-label="Nova categoria" title="Nova categoria">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
+            <path d="M12 10v6"/><path d="M9 13h6"/>
+          </svg>
+        </button>
         <button id="open-add" class="btn-add" type="button" aria-label="Adicionar site" title="Adicionar site">+</button>
       </div>
     </header>
 
     <p id="page-error" class="banner-error" role="alert" hidden></p>
 
-    <ul id="list" class="grid" aria-live="polite"></ul>
+    <div id="groups" class="groups" aria-live="polite"></div>
 
     <div id="empty" class="empty" hidden>
       <p class="empty-title">Nenhum site salvo ainda</p>
@@ -69,6 +75,20 @@
 
       <label for="url">URL</label>
       <input id="url" name="url" type="url" maxlength="2048" placeholder="https://github.com" autocomplete="off" inputmode="url" required>
+
+      <label for="icon">Ícone <span class="label-optional">(opcional)</span></label>
+      <div class="icon-field">
+        <span id="icon-preview" class="card-icon" aria-hidden="true"></span>
+        <input id="icon" name="icon" type="text" maxlength="2048" placeholder="URL de imagem ou emoji" autocomplete="off" aria-describedby="icon-hint">
+      </div>
+      <p id="icon-hint" class="field-hint">Deixe vazio para usar o ícone do próprio site.</p>
+
+      <label for="category">Categoria</label>
+      <select id="category" name="category">
+        <option value="">Sem categoria</option>
+        <option value="new">+ Nova categoria…</option>
+      </select>
+      <input id="new-category" name="new-category" type="text" maxlength="50" placeholder="Nome da nova categoria" autocomplete="off" aria-label="Nome da nova categoria" hidden>
 
       <p id="form-error" class="form-error" role="alert" hidden></p>
 
